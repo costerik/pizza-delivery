@@ -1,3 +1,5 @@
+import { DataType } from '../../index.d.types';
+
 export function post(): string {
   return 'ITEMS POST';
 }

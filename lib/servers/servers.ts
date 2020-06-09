@@ -20,10 +20,8 @@ import * as handlers from '../handlers';
  *Types
  *
  * */
-
 import type { IncomingMessage, ServerResponse } from 'http';
-type RoutesType = 'users' | 'tokens' | 'items' | 'carts';
-type MethodsType = 'get' | 'put' | 'eliminate' | 'post';
+import type { RoutesType, MethodsType, DataType, UserType } from '../../index.d.types';
 
 function setupServer(req: IncomingMessage, res: ServerResponse): void {
   const { method, url: urlReq, headers } = req;
@@ -50,15 +48,14 @@ function setupServer(req: IncomingMessage, res: ServerResponse): void {
       const route: RoutesType = trimmedPath as RoutesType;
       const verb: MethodsType =
         methodToProcess.toLowerCase() === 'delete' ? 'eliminate' : (methodToProcess as MethodsType);
-      const data = {
+      const data: DataType = {
         headers,
         trimmedPath,
         method,
         payload: helpers.parseJsonToObject(buffer),
         query: queryStringObject,
       };
-      console.log(data);
-      const response = handlers[route][verb]();
+      const response = handlers[route][verb](data);
       res.setHeader('Content-Type', 'application/json');
       res.writeHead(200);
       res.end(JSON.stringify(response || {}));
