@@ -1,15 +1,17 @@
-export function post(): string {
+import { DataType } from '../../index.d.types';
+
+export function post(data: DataType): string {
   return 'TOKENS POST';
 }
 
-export function put(): string {
+export function put(data: DataType): string {
   return 'TOKENS UPDATE';
 }
 
-export function eliminate(): string {
+export function eliminate(data: DataType): string {
   return 'TOKENS ELIMINATE';
 }
 
-export function get(): string {
+export function get(data: DataType): string {
   return 'TOKENS GET';
 }

@@ -21,7 +21,7 @@ import * as handlers from '../handlers';
  *
  * */
 import type { IncomingMessage, ServerResponse } from 'http';
-import type { RoutesType, MethodsType, DataType, UserType } from '../../index.d.types';
+import type { RoutesType, MethodsType, DataType } from '../../index.d.types';
 
 function setupServer(req: IncomingMessage, res: ServerResponse): void {
   const { method, url: urlReq, headers } = req;

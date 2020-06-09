@@ -1,13 +1,14 @@
 import { DataType, UserType } from '../../index.d.types';
+import * as Data from '../data';
 
-export function post(
+export async function post(
   data: DataType
-): {
+): Promise<{
   statusCode: number;
   response?: {
     error: string;
   };
-} {
+}> {
   const {
     payload: { firstName, lastName, email, address },
   } = data as DataType<UserType>;
@@ -33,6 +34,7 @@ export function post(
   } else {
     return { statusCode: 400, response: { error: 'missing required field: address' } };
   }
+
   return { statusCode: 200 };
 }
 
